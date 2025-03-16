@@ -5,7 +5,7 @@ import jakarta.persistence.*
 @Entity
 class ProjectDetail(
     content: String,
-    url: String,
+    url: String?,
     isActive: Boolean
 ): BaseEntity() {
     @Id

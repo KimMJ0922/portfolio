@@ -7,9 +7,9 @@ class Project(
     name: String,
     description: String,
     startYear: Int,
-    endYear: Int,
+    endYear: Int?,
     startMonth: Int,
-    endMonth: Int,
+    endMonth: Int?,
     isActive: Boolean
 ): BaseEntity() {
     @Id
@@ -17,19 +17,19 @@ class Project(
     @Column(name = "project_id")
     var id: Long? = null
 
-    var name: String? = null
+    var name: String? = name
 
-    var description: String? = null
+    var description: String? = description
 
-    var startYear: Int? = null
+    var startYear: Int? = startYear
 
-    var endYear: Int? = null
+    var endYear: Int? = endYear
 
-    var startMonth: Int? = null
+    var startMonth: Int? = startMonth
 
-    var endMonth: Int? = null
+    var endMonth: Int? = endMonth
 
-    var isActive: Boolean? = null
+    var isActive: Boolean? = isActive
 
     @OneToMany(targetEntity = ProjectDetail::class
         , fetch = FetchType.LAZY

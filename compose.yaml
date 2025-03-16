@@ -1,14 +1,36 @@
+version: "3"	#docker version 3 사용
 services:
-  spring-boot:
-    build: .
-    ports:
-      - '80:80'
   mysql:
-    image: 'mysql:latest'
+    image: mysql:latest
+    container_name: mysql
     environment:
-      - 'MYSQL_DATABASE=mydatabase'
-      - 'MYSQL_PASSWORD=secret'
-      - 'MYSQL_ROOT_PASSWORD=verysecret'
-      - 'MYSQL_USER=myuser'
+      - MYSQL_DATABASE=portfolio
+      - MYSQL_PASSWORD=secret
+      - MYSQL_ROOT_PASSWORD=verysecret
+      - MYSQL_ROOT_HOST=%
+      - MYSQL_USER=myuser
     ports:
       - '3306'
+    volumes: #볼륨 지정
+      - ./db/data:/var/lib/mysql
+    networks:		#사용할 네트워크 지정
+      - portfolio_network_01
+
+  spring-boot:
+    image: spring-portfolio
+    container_name: portfolio
+    build:
+      context: .
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - mysql
+    ports:
+      - '80:80'
+    environment:
+      SPRING_PROFILES_ACTIVE: local
+    networks: #사용할 네트워크 지정
+      - portfolio_network_01
+
+networks:	#네트워크 설정
+  portfolio_network_01:

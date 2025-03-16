@@ -7,9 +7,9 @@ class Experience(
     title: String,
     description: String,
     startYear: Int,
-    endYear: Int,
+    endYear: Int?,
     startMonth: Int,
-    endMonth: Int,
+    endMonth: Int?,
     isActive: Boolean
 ): BaseEntity() {
     @Id
@@ -23,18 +23,18 @@ class Experience(
 
     var startYear: Int = startYear
 
-    var endYear: Int = endYear
+    var endYear: Int? = endYear
 
     var startMonth: Int = startMonth
 
-    var endMonth: Int = endMonth
+    var endMonth: Int? = endMonth
 
     var isActive: Boolean = isActive
 
     @OneToMany(targetEntity = ExperienceDetail::class
         , fetch = FetchType.LAZY
         , cascade = [CascadeType.ALL])
-    @JoinColumn(name = "experience_detail_id")
+    @JoinColumn(name = "experience_id")
     var details: MutableList<ExperienceDetail> = mutableListOf()
 
     fun getEndYearMonth(): String{
