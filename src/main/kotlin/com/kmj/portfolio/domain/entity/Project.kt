@@ -17,7 +17,7 @@ class Project(
     @Column(name = "project_id")
     var id: Long? = null
 
-    var name: String? = name
+    var name: String = name
 
     var description: String? = description
 

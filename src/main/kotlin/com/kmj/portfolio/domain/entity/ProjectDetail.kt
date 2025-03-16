@@ -13,7 +13,7 @@ class ProjectDetail(
     @Column(name = "project_detail_id")
     var id: Long? = null
 
-    var content: String? = content
+    var content: String = content
 
     var url: String? = url
 

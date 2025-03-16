@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component
 import java.time.LocalDate
 
 @Component
-@Profile(value = ["local", "dev"])
+@Profile(value = ["local", "dev", "default"])
 class DataInitializer (
     private val achievementRepository: AchievementRepository,
     private val introductionRepository: IntroductionRepository,

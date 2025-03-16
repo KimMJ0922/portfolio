@@ -22,7 +22,7 @@ class ProjectRepositoryTest(
     // 더미 객체 생성
     private fun createProject(n: Int): Project {
         val project = Project(
-            name = "${n}",
+            name = "$n",
             description = "테스트 설명 {n}",
             startYear = 2023,
             startMonth = 9,
@@ -76,9 +76,9 @@ class ProjectRepositoryTest(
         assertThat(projects).hasSize(DATA_SIZE)
         println("projects.size: ${projects.size}")
         for (project in projects) {
-            assertThat(project.details).hasSize(project.name.toInt())
+            project.name?.let { assertThat(project.details).hasSize(it.toInt()) }
             println("project.details.size: ${project.details.size}")
-            assertThat(project.skills).hasSize(project.name.toInt())
+            project.name?.let { assertThat(project.skills).hasSize(it.toInt()) }
             println("project.skills.size: ${project.skills.size}")
         }
         println("----- findAll 테스트 종료 -----")
@@ -90,9 +90,9 @@ class ProjectRepositoryTest(
         assertThat(projects).hasSize(DATA_SIZE)
         println("projects.size: ${projects.size}")
         for (project in projects) {
-            assertThat(project.details).hasSize(project.name.toInt())
+            project.name?.let { assertThat(project.details).hasSize(it.toInt()) }
             println("project.details.size: ${project.details.size}")
-            assertThat(project.skills).hasSize(project.name.toInt())
+            project.name?.let { assertThat(project.skills).hasSize(it.toInt()) }
             println("project.skills.size: ${project.skills.size}")
         }
         println("----- findAllByIsActive 테스트 종료 -----")
