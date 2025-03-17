@@ -1,7 +1,6 @@
 package com.kmj.portfolio.presentation.controller
 
 import com.kmj.portfolio.domain.constant.SkillType
-import com.kmj.portfolio.domain.entity.Skill
 import com.kmj.portfolio.presentation.service.PresentationService
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
@@ -40,6 +39,6 @@ class PresentationViewController(
         val projects = presentationService.getProjects()
         model.addAttribute("projects", projects)
 
-        return "presentation/projects"
+        return "presentation/page/projects"
     }
 }
