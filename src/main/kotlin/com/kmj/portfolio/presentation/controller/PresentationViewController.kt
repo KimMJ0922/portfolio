@@ -22,18 +22,17 @@ class PresentationViewController(
         val introductions = presentationService.getIntroductions()
 
         val links = presentationService.getLinks()
+        model.addAttribute("introductions", introductions)
         model.addAttribute("links", links)
-
-        return "presentation/index"
+        return "presentation/page/index"
     }
 
     @GetMapping("/resume")
     fun resume(model: Model): String {
         val resume = presentationService.getResume()
         model.addAttribute("resume", resume)
-        model.addAttribute("skillType", SkillType.entries.toTypedArray())
-
-        return "presentation/resume"
+        model.addAttribute("skillTypes", SkillType.entries.toTypedArray())
+        return "presentation/page/resume"
     }
 
     @GetMapping("/projects")
