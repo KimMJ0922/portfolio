@@ -1,7 +1,16 @@
 package com.kmj.portfolio.presentation.interceptor
 
 import org.springframework.context.annotation.Configuration
+import org.springframework.web.servlet.config.annotation.InterceptorRegistry
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer
 
 @Configuration
-class PresentationInterceptorConfig {
+class PresentationInterceptorConfig(
+    private val presentationInterceptor: PresentationInterceptor
+): WebMvcConfigurer {
+    override fun addInterceptors(registry: InterceptorRegistry) {
+        registry.addInterceptor(presentationInterceptor)
+            .addPathPatterns("/**")
+            .excludePathPatterns("/assets/**", "/css/**", "/js/**", "h2**", "favicon.ico", "/error")
+    }
 }
